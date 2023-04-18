@@ -1,0 +1,43 @@
+sudo yum install -y yum-utils
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+sudo systemctl start docker
+sudo usermod -aG docker $User_Name
+sudo docker run hello-world
+
+
+
+
+To deploy an index.html file on a Docker container using VS Code on CentOS, you can follow these steps:
+Install Docker on CentOS: You can follow the official Docker documentation to install Docker on CentOS.
+Create a Dockerfile: Create a file named Dockerfile in the directory where your index.html file is located. The Dockerfile should contain the following lines:
+
+
+------Dockerfile------
+FROM nginx:latest
+COPY index.html /usr/share/nginx/html/index.html
+
+
+This Dockerfile uses the latest version of the official Nginx image as the base image and copies your index.html file to the /usr/share/nginx/html/ directory in the container.
+Build the Docker image: Open the VS Code terminal and navigate to the directory where your Dockerfile is located. Run the following command to build the Docker image:
+
+
+------VS Code Terminal (Ctrl +)------
+docker build -t my-image .
+
+
+This command builds the Docker image using the Dockerfile in the current directory and tags it with the name my-image.
+Run the Docker container: After the Docker image has been built, you can run the container using the following command:
+
+
+------VS Code Terminal (Ctrl +)------
+docker run -d --name my-container -p 80:80 my-image
+
+
+This command runs the container in the background with the name my-container, maps port 80 on the host to port 80 in the container, and uses the my-image Docker image you just built.
+Verify the deployment: Open a web browser and navigate to http://localhost. You should see your index.html file displayed in the browser.
+That's it! Your index.html file is now deployed on a Docker container using VS Code on CentOS.

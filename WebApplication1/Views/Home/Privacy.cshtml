@@ -1,0 +1,15 @@
+﻿@model Users
+@{
+    ViewData["Title"] = "Privacy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+
+<form asp-controller="home" asp-action="Privacy">
+    <label for="Login" class="form-control">Login: </label>
+    <input type="email" asp-for="Login" />
+    <label for="Password" class="form-control">Password: </label>
+    <input type="password" asp-for="Password" />
+    <input type="submit" />
+</form>
